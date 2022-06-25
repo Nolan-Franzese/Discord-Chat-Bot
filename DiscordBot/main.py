@@ -2,7 +2,7 @@
 import discord
 import json
 
-TOKEN_FILE = open("DiscordBot/token.txt", 'r')
+TOKEN_FILE = open("token.txt", 'r') # opening a file not in the repo
 TOKEN = TOKEN_FILE.readline()
 TOKEN_FILE.close()
 
@@ -16,12 +16,12 @@ class MyClient(discord.Client):
         if msg.channel.name == "chat-with-bot":
             print('{0.content}'.format(msg))
 
-            with open("DiscordBot/messages.json", 'r') as file:
+            with open("messages.json", 'r') as file:
                 msgs_array = json.load(file)
 
             msgs_array.append('{0.content}'.format(msg))
 
-            with open("DiscordBot/messages.json", 'w') as file:
+            with open("messages.json", 'w') as file:
                 json.dump(msgs_array, file, indent=4)
 
 client = MyClient()
